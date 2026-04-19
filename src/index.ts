@@ -6,6 +6,7 @@ import compression from 'compression';
 import rateLimit from 'express-rate-limit';
 import { logger } from './logger';
 import taskRouter from './routes/task';
+import workflowRouter from './routes/workflow';
 import docsRouter from './routes/docs';
 import openapiRouter from './routes/openapi';
 import rootRouter from './routes/root';
@@ -25,6 +26,7 @@ app.get('/v1/health', (_req, res) => {
 
 app.use('/', rootRouter);
 app.use('/v1', taskRouter);
+app.use('/v1', workflowRouter);
 app.use('/docs', docsRouter);
 app.use('/openapi.json', openapiRouter);
 
