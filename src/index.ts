@@ -8,6 +8,7 @@ import { logger } from './logger';
 import taskRouter from './routes/task';
 import docsRouter from './routes/docs';
 import openapiRouter from './routes/openapi';
+import rootRouter from './routes/root';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -22,6 +23,7 @@ app.get('/v1/health', (_req, res) => {
   res.json({ status: 'ok', service: 'browser-task-api', timestamp: new Date().toISOString() });
 });
 
+app.use('/', rootRouter);
 app.use('/v1', taskRouter);
 app.use('/docs', docsRouter);
 app.use('/openapi.json', openapiRouter);
